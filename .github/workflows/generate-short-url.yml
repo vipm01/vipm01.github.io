@@ -26,3 +26,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           REPO_NAME: ${{ github.repository }}
           USERNAME: ${{ github.repository_owner }}
+
+      - name: Commit updated urls.txt
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add urls.txt
+          git commit -m "Update urls.txt" || echo "No changes to commit"
+          git push
