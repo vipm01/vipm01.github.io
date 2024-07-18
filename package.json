@@ -2,8 +2,9 @@
   "name": "your-project",
   "version": "1.0.0",
   "description": "Your project description",
+  "type": "module",
   "scripts": {
-    "start": "node scripts/update-urls.js"
+    "start": "node scripts/update-urls.mjs"
   },
   "author": "Your Name",
   "license": "MIT"
