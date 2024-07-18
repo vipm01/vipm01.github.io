@@ -1,7 +1,7 @@
 {
-  "name": "your-repo-name",
+  "name": "vipm01.github.io",
   "version": "1.0.0",
   "scripts": {
-    "build": "mkdir -p ./dist && echo 'Redirect URL: https://baidu.com' > ./dist/redirect-url.txt"
+    "build": "echo 'Redirect URL: https://www.example.com' > ./dist/redirect-url.txt"
   }
 }
