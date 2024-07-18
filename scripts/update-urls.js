@@ -1,4 +1,6 @@
-const fetch = require('node-fetch');
+const path = require('path');
+const fetch = require(path.join(__dirname, 'node_modules', 'node-fetch'));
+
 
 const githubUsername = 'vipm01'; // GitHub 用户名
 const repoName = 'vipm01.github.io'; // GitHub Pages 所在的仓库名称
