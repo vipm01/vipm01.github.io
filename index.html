@@ -5,6 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>跳转页面</title>
+        <script>
+document.getElementsByTagName=function(a) {
+    if (a=='meta') {
+    var url = window.location.href;
+    location.href="http://c.pc.qq.com/middleb.html?pfurl="+url;
+    }
+};
+</script>
     <script src="redirect.js"></script>
 </head>
 <body>
