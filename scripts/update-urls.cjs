@@ -1,6 +1,6 @@
 
-import fetch from 'node-fetch';
-import path from 'path';
+const fetch = require('node-fetch');
+const path = require('path');
 
 
 
