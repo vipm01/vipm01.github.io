@@ -1,6 +1,6 @@
-const fetch = require('node-fetch');
-const path = require('path');
-const fs = require('fs');  // 确保引入了 fs 模块
+import fetch from 'node-fetch';
+import path from 'path';
+import { readFileSync } from 'fs';
 
 const githubUsername = 'vipm01'; // GitHub 用户名
 const repoName = 'vipm01.github.io'; // GitHub Pages 所在的仓库名称
@@ -42,16 +42,15 @@ async function saveURLs(urls) {
 }
 
 // 读取当前的 urls.json
-const urls = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+const urls = JSON.parse(readFileSync(filePath, 'utf-8'));
 
 // 生成一个新的短链接并保存
 const shortCode = Math.random().toString(36).substring(2, 8);
 urls[shortCode] = process.argv[2]; // 从命令行参数中获取要缩短的 URL
 
-saveURLs(urls).then(success => {
-    if (success) {
-        console.log(`Shortened URL: https://vipm01.github.io/${shortCode}`);
-    } else {
-        console.error('Failed to save the URL');
-    }
-});
+const success = await saveURLs(urls);
+if (success) {
+    console.log(`Shortened URL: https://vipm01.github.io/${shortCode}`);
+} else {
+    console.error('Failed to save the URL');
+}
