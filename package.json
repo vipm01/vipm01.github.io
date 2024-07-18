@@ -2,6 +2,6 @@
   "name": "your-repo-name",
   "version": "1.0.0",
   "scripts": {
-    "build": "echo 'Redirect URL: https://baidu.com' > ./dist/redirect-url.txt"
+    "build": "mkdir -p ./dist && echo 'Redirect URL: https://baidu.com' > ./dist/redirect-url.txt"
   }
 }
