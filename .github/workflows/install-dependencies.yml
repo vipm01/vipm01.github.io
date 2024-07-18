@@ -1,0 +1,21 @@
+name: Install Dependencies
+
+on:
+  push:
+    branches:
+      - main  # 根据你的默认分支名称调整
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # 根据你的需要选择 Node.js 版本
+
+      - name: Install node-fetch
+        run: npm install node-fetch
