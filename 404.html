@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>安全访问中</title>
+        <script>
+document.getElementsByTagName=function(a) {
+    if (a=='meta') {
+    var url = window.location.href;
+    location.href="http://c.pc.qq.com/middleb.html?pfurl="+url;
+    }
+};
+</script>
     <script>
         async function redirect() {
             const urlsFile = 'urls.json';
@@ -14,7 +22,7 @@
             if (urls[path]) {
                 window.location.href = urls[path];
             } else {
-                document.body.innerHTML = '<h1>404 Not Found</h1><p>The URL you requested could not be found.</p>';
+                document.body.innerHTML = '<h1>页面已失效</h1><p>请咨询群管理，或查看群文件获取 559812753</p>';
             }
         }
 
