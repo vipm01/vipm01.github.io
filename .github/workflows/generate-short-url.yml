@@ -1,0 +1,28 @@
+name: Generate Short URL
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'  # 每10分钟运行一次
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run script to generate short URL
+        run: node generate-short-url.js
+
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          REPO_NAME: vipm01.github.io
+          USERNAME: vipm01
