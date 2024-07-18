@@ -1,6 +1,7 @@
 const fs = require('fs').promises;
 const axios = require('axios');
 const crypto = require('crypto');
+const path = require('path');
 
 const { GITHUB_TOKEN, REPO_NAME, USERNAME } = process.env;
 
@@ -30,9 +31,18 @@ async function generateShortUrl() {
     });
 
     console.log(`New short URL generated: ${newUrl}`);
+    return newUrl;
   } catch (error) {
     console.error('Error generating short URL:', error);
+    throw error;
   }
 }
 
-generateShortUrl();
+(async () => {
+  try {
+    const newUrl = await generateShortUrl();
+    process.stdout.write(newUrl + '\n');
+  } catch (error) {
+    process.stderr.write('Error generating short URL\n');
+  }
+})();
