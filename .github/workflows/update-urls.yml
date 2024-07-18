@@ -1,0 +1,21 @@
+name: Update URLs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-urls:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Update URLs
+        run: |
+          echo "Updating URLs..."
+          node scripts/update-urls.js
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
