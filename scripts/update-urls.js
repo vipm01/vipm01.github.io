@@ -1,5 +1,4 @@
-const path = require('path');
-const fetch = require(path.join(__dirname, 'node_modules', 'node-fetch'));
+const fetch = require('node-fetch');
 
 
 const githubUsername = 'vipm01'; // GitHub 用户名
