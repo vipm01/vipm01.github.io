@@ -15,6 +15,8 @@ app.post('/api/shorten', async (req, res) => {
     const { url } = req.body;
 
     try {
+        console.log(`Received shorten request for URL: ${url}`);
+
         // 发送 GitHub Actions 的触发请求
         const response = await fetch(`https://api.github.com/repos/${githubUsername}/${repoName}/dispatches`, {
             method: 'POST',
@@ -32,13 +34,15 @@ app.post('/api/shorten', async (req, res) => {
         });
 
         if (response.ok) {
+            console.log('GitHub Actions request successfully sent');
             res.json({ success: true, message: 'Shortening request sent to GitHub Actions' });
         } else {
-            throw new Error('Failed to send GitHub Actions request');
+            const errorData = await response.json();
+            throw new Error(`Failed to send GitHub Actions request: ${response.status} ${response.statusText} - ${JSON.stringify(errorData)}`);
         }
     } catch (error) {
-        console.error('Error:', error);
-        res.status(500).json({ success: false, message: 'Failed to send GitHub Actions request' });
+        console.error('Error:', error.message);
+        res.status(500).json({ success: false, message: 'Failed to send GitHub Actions request', error: error.message });
     }
 });
 
