@@ -1,4 +1,3 @@
-// 修改为 CommonJS 模块
 const fetch = require('node-fetch');
 const path = require('path');
 const fs = require('fs');  // 确保引入了 fs 模块
