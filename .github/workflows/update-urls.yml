@@ -1,9 +1,12 @@
 name: Update URLs
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL to shorten'
+        required: true
+        default: ''
 
 jobs:
   update-urls:
@@ -14,8 +17,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Update URLs
-        run: |
-          echo "Updating URLs..."
-          node scripts/update-urls.js
+        run: node scripts/update-urls.js ${{ github.event.inputs.url }}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
