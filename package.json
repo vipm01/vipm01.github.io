@@ -1,8 +1,12 @@
 {
   "name": "your-project",
   "version": "1.0.0",
+  "description": "Your project description",
   "type": "module",
-  "dependencies": {
-    "node-fetch": "^3.0.0"
-  }
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Your Name",
+  "license": "MIT"
 }
