@@ -1,8 +1,9 @@
 name: Generate Short URL
 
 on:
-  schedule:
-    - cron: '*/10 * * * *'  # 每10分钟运行一次
+  push:
+    branches:
+      - main
 
 jobs:
   generate:
@@ -17,12 +18,11 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install axios
 
       - name: Run script to generate short URL
         run: node generate-short-url.js
-
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          REPO_NAME: vipm01.github.io
-          USERNAME: vipm01
+          REPO_NAME: ${{ github.repository }}
+          USERNAME: ${{ github.repository_owner }}
