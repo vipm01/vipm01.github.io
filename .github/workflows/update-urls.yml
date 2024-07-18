@@ -25,6 +25,6 @@ jobs:
         run: npm install node-fetch
 
       - name: Update URLs
-        run: node scripts/update-urls.js ${{ github.event.inputs.url }}
+        run: node scripts/update-urls.mjs ${{ github.event.inputs.url }}
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
