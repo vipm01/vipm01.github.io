@@ -5,9 +5,10 @@ const app = express();
 
 app.use(bodyParser.json());
 
-const githubUsername = 'vipm01';
-const repoName = 'vipm01.github.io';
-const filePath = 'urls.json';
+const githubUsername = 'vipm01'; // GitHub 用户名
+const repoName = 'vipm01.github.io'; // GitHub Pages 所在的仓库名称
+const filePath = 'urls.json'; // 存储 URL 映射的文件路径，位于仓库根目录
+
 const githubToken = process.env.GH_TOKEN; // 从环境变量中获取 GitHub 个人访问令牌
 
 app.post('/api/shorten', async (req, res) => {
