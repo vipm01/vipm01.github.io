@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        async function redirect() {
+            const urlsFile = 'urls.json';
+            const path = window.location.pathname.substring(1);
+            const response = await fetch(urlsFile);
+            const urls = await response.json();
+            
+            if (urls[path]) {
+                window.location.href = urls[path];
+            } else {
+                document.body.innerHTML = '<h1>404 Not Found</h1><p>The URL you requested could not be found.</p>';
+            }
+        }
+
+        redirect();
+    </script>
+</head>
+<body>
+</body>
+</html>
