@@ -1,7 +1,0 @@
-{
-  "name": "vipm01.github.io",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "echo 'Redirect URL: https://www.example.com' > ./dist/redirect-url.txt"
-  }
-}
