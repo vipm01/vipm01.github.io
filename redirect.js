@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/redirect-url.txt')
+    fetch('/https://qq.com')
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
