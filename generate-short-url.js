@@ -11,7 +11,8 @@ async function generateShortUrl() {
     urls = urls.split('\n').filter(url => url.trim() !== '');
 
     // Generate a new short URL
-    const newUrl = `https://${REPO_NAME}.github.io/${crypto.randomBytes(6).toString('hex')}`;
+    const newShortCode = crypto.randomBytes(6).toString('hex');
+    const newUrl = `https://${USERNAME}.github.io/${newShortCode}`;
     urls.push(newUrl);
 
     // Update urls.txt
