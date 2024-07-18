@@ -4,29 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>URL Shortener</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        input[type="text"] {
-            width: 300px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-        }
-    </style>
 </head>
 <body>
-    <h1>URL Shortener</h1>
-    <input type="text" id="urlInput" placeholder="Enter URL to shorten">
-    <button onclick="shortenURL()">Generate</button>
+    <label for="urlInput">Enter URL to shorten:</label>
+    <input type="text" id="urlInput">
+    <button onclick="shortenURL()">Shorten URL</button>
     <p id="shortenedURL"></p>
 
-    <script src="scripts.js"></script>
+    <script>
+        async function shortenURL() {
+            const urlInput = document.getElementById('urlInput').value;
+            const shortenedURLDisplay = document.getElementById('shortenedURL');
+            
+            if (!urlInput) {
+                alert('Please enter a URL');
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/shorten', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ url: urlInput })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    shortenedURLDisplay.innerHTML = `Shortened URL: <a href="${data.shortenedURL}" target="_blank">${data.shortenedURL}</a>`;
+                } else {
+                    throw new Error('Failed to shorten URL');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while shortening URL');
+            }
+        }
+    </script>
 </body>
 </html>
