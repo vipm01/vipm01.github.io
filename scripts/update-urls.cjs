@@ -1,6 +1,7 @@
-import fetch from 'node-fetch';
 const path = require('path');
-const fs = require('fs');
+const fetch = require('node-fetch');
+
+
 
 const githubUsername = 'vipm01';
 const repoName = 'vipm01.github.io';
