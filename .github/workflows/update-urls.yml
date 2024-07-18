@@ -16,6 +16,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install node-fetch
+        run: npm install node-fetch
+
       - name: Update URLs
         run: node scripts/update-urls.js ${{ github.event.inputs.url }}
         env:
