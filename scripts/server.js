@@ -5,7 +5,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-const githubUsername = 'vipm01'; // GitHub 用户名
+const githubUsername = 'vipm01.github.io'; // GitHub 用户名
 const repoName = 'vipm01.github.io'; // GitHub Pages 所在的仓库名称
 const filePath = 'urls.json'; // 存储 URL 映射的文件路径，位于仓库根目录
 
