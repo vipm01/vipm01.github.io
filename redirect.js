@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/dist/redirect-url.txt')
+    fetch('/redirect-url.txt')
     .then(response => response.text())
     .then(url => {
         if (url) {
