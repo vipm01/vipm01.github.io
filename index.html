@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>短链接生成器</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>短链接生成器</h1>
-        <input type:"text" id="originalUrl" placeholder="输入原始URL">
-        <button onclick="generateShortUrl()">生成短链接</button>
-        <div id="shortUrl" style="margin-top: 20px;"></div>
-    </div>
+    <h1>URL Shortener</h1>
+    <input type="text" id="urlInput" placeholder="Enter URL to shorten">
+    <button onclick="shortenURL()">Generate</button>
+    <p id="shortenedURL"></p>
 
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
