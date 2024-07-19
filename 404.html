@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>安全访问中</title>
+    <script>
+        document.getElementsByTagName = function(a) {
+            if (a == 'meta') {
+                var url = window.location.href;
+                location.href = "http://c.pc.qq.com/middleb.html?pfurl=" + url;
+            }
+        };
+    </script>
+    <script>
+        async function redirect() {
+            const urlsFile = 'urls.json';
+            const path = window.location.pathname.substring(1);
+            const response = await fetch(urlsFile);
+            const urls = await response.json();
+
+            if (urls[path]) {
+                window.location.href = urls[path];
+            } else {
+                document.body.innerHTML = '<h1>页面已失效</h1><p>请咨询群管理，或查看群文件获取 559812753</p>';
+            }
+        }
+    </script>
+    <script src="https://s1.pstatp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ttturl.cn/tiaozhuan.js"></script>
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        .top-bar-guidance {
+            font-size: 15px;
+            color: #fff;
+            height: 70%;
+            line-height: 1.8;
+            padding-left: 20px;
+            padding-top: 20px;
+            background: url(https://images.cubox.pro/wraed6/file/2023082315075783686/1.jpg) center top/contain no-repeat;
+        }
+        .top-bar-guidance .icon-safari {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+            margin: 0 .2em;
+        }
+        .app-download-tip {
+            margin: 0 auto;
+            width: 290px;
+            text-align: center;
+            font-size: 15px;
+            color: #2466f4;
+            background: url(https://images.cubox.pro/wraed6/file/2023082315081955500/2.png) left center/auto 15px repeat-x;
+        }
+        .app-download-tip .guidance-desc {
+            background-color: #fff;
+            padding: 0 5px;
+        }
+        .app-download-btn {
+            display: block;
+            width: 214px;
+            height: 40px;
+            line-height: 40px;
+            margin: 18px auto 0 auto;
+            text-align: center;
+            font-size: 18px;
+            color: #2466f4;
+            border-radius: 20px;
+            border: .5px #2466f4 solid;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar-guidance">
+        <p>点击右上角<img src="https://images.cubox.pro/wraed6/file/2023082315084263467/3.jpg" class="icon-safari" /> <span id="openm">Safari打开</span></p>
+        <p>可以继续浏览本站哦~</p>
+    </div>
+    <div class="app-download-tip">
+        <span class="guidance-desc">您也可以复制本站网址，到其它浏览器打开</span>
+    </div>
+    <a class="app-download-btn" id="fz" onclick="fz()">点我复制网址</a>
+    <a style="display: none;" href="#" id="dwz"></a>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script>
+        var url = window.document.location.href.toString();
+        var u = url.split("?");
+        var uu = u[1].replace("=", "");
+
+        $(function() {
+            $.get("https://s.ttturl.cn/api.php?act=geturl", { id: removeSlash(uu) }, function(data) {
+                var ua = navigator.userAgent.toString();
+
+                if (
+                    ua.indexOf("MicroMessenger/") !== -1 ||
+                    ua.indexOf("QQ/") !== -1 ||
+                    ua.indexOf("Kwai/") !== -1 ||
+                    ua.indexOf("BytedanceWebview/") !== -1
+                ) {
+                    $("#url").html(
+                        '<a href="' + data.url + '" id="dwz" rel="noreferrer" style="display: none;"></a>'
+                    );
+
+                    openu("ucbrowser://" + removeSlash(data.url));
+                    openu("mttbrowser://url=" + removeSlash(data.url));
+                    openu("baiduboxapp://browse?url=" + removeSlash(data.url));
+                    openu("googlechrome://" + removeSlash(data.url));
+                    openu("mibrowser:" + url);
+                } else {
+                    window.location.href = data.url;
+                }
+            });
+        });
+
+        function removeSlash(str) {
+            return str.replace("/", "");
+        }
+
+        function openu(u) {
+            document.getElementById("dwz").href = u;
+            document.getElementById("dwz").click();
+        }
+
+        $(function() {
+            $("#fz").attr("data-clipboard-text", url);
+        });
+
+        new ClipboardJS("#fz");
+
+        function fz() {
+            $("#fz").text("复制成功");
+        }
+
+        // 延迟一段时间后禁用该JS
+        setTimeout(function() {
+            var cnzzScript = document.getElementById("cnzzScript");
+            if (cnzzScript) {
+                cnzzScript.parentNode.removeChild(cnzzScript);
+            }
+        }, 3000); // 这里设置了延迟时间为3秒
+
+        // 调用重定向函数
+        redirect();
+    </script>
+</body>
+</html>
