@@ -1,45 +1,32 @@
-<!DOCTYPE html>
-<html lang="en" style="font-size:7vw;">
+<!doctype html>
+<html lang=en style=font-size:7vw>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>[安全网站]用浏览器打开</title>
-    <meta name="referrer" content="no-referrer" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    <meta content="yes" name="apple-mobile-web-app-capable" />
-    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta content="false" name="twcClient" id="twcClient" />
-    <meta name="aplus-touch" content="1" />
-    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <style>
-        body, html { width: 100%; height: 100%; }
-        * { margin: 0; padding: 0; }
-        body { background-color: #fff; background: url(/yindaoye02.png) center center/cover no-repeat; }
-        .a { font-size: 15px; color: #fff; height: 70%; line-height: 1.8; padding-left: 20px; padding-top: 20px; background: url(/yindaoye01.jpg) center top/contain no-repeat; }
-        .b { width: 88px; height: 30px; vertical-align: middle; margin: 0 .2em; }
-        .c { margin: 0 auto; width: 300px; text-align: center; font-size: 16px; color: #2466f4; }
-        .d { background-color: #fff; padding: 0 5px; }
-        .e { display: block; width: 220px; height: 50px; line-height: 50px; margin: 20px auto; text-align: center; font-size: 20px; color: #fff; background-color: #2466f4; border-radius: 25px; border: 2px solid #2466f4; text-decoration: none; font-weight: bold; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); transition: background-color 0.3s, color 0.3s; }
-        .f:hover { background-color: #1a4bbd; color: #fff; }
-        .g { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.6); padding: 20px; border-radius: 10px; text-align: center; }
-        .h, .i { margin: 10px 0; }
-    </style>
+<meta charset=UTF-8>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<title>【安全网站】请使用浏览器打开</title>
+<meta name=referrer content=no-referrer>
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name=viewport>
+<meta content=yes name=apple-mobile-web-app-capable>
+<meta content=black name=apple-mobile-web-app-status-bar-style>
+<meta name=format-detection content="telephone=no">
+<meta content=false name=twcClient id=twcClient>
+<meta name=aplus-touch content=1>
+<meta name=viewport content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<style>body,html{width:100%;height:100%}*{margin:0;padding:0}body{background-color:#fff;background:url(/yindaoye02.png) center center/cover no-repeat}.top-bar-guidance{font-size:15px;color:#fff;height:70%;line-height:1.8;padding-left:20px;padding-top:20px;background:url(/yindaoye01.jpg) center top/contain no-repeat}.top-bar-guidance .icon-safari{width:88px;height:30px;vertical-align:middle;margin:0 .2em}.app-download-tip{margin:0 auto;width:300px;text-align:center;font-size:16px;color:#2466f4}.app-download-tip .guidance-desc{background-color:#fff;padding:0 5px}.app-download-btn{display:block;width:220px;height:50px;line-height:50px;margin:20px auto;text-align:center;font-size:20px;color:#fff;background-color:#2466f4;border-radius:25px;border:2px solid #2466f4;text-decoration:none;font-weight:700;box-shadow:0 4px 10px rgba(0,0,0,.2);transition:background-color .3s,color .3s}.app-download-btn:hover{background-color:#1a4bbd;color:#fff}.centered-message{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background-color:rgba(255,255,255,.6);padding:20px;border-radius:10px;text-align:center}.centered-message h1,.centered-message p{margin:10px 0}</style>
 </head>
-<body style="background-color:#f5f5f5;text-align: center;">
-    <div class="a" style="display: none;">
-        <p>点击右上角<img src="/yindaoyeliulanqi.jpg" class="b" /> <span id="openm">浏览器打开</span></p>
-        <p>请使用非QQ浏览器以外的浏览器</p>
-        <p>可以继续浏览本站哦~</p>
-    </div>
-    <div class="c" style="display: none;">
-        <span class="d">也可复制本网址，用其它浏览器打开</span>
-    </div>
-    <a class="e" id="fz" onclick="fz()">点我复制网址</a>
-    <a style="display: none;" href="#" id="dwz"></a>
-
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://lib.baomitu.com/clipboard.js/2.0.6/clipboard.min.js"></script>
-    <script src="styles.min.js"></script>
+<body style=background-color:#f5f5f5;text-align:center>
+<div class=top-bar-guidance style=display:none>
+<p>点击右上角<img src=/yindaoyeliulanqi.jpg class=icon-safari> <span id=openm>浏览器打开</span></p>
+<p>请使用非QQ浏览器以外的浏览器</p>
+<p>可以继续浏览本站哦~</p>
+</div>
+<div class=app-download-tip style=display:none>
+<span class=guidance-desc>也可复制本网址，用其它浏览器打开</span>
+</div>
+<a class=app-download-btn id=fz onclick=fz()>点我复制网址</a>
+<a style=display:none href=# id=dwz></a>
+<script src=https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js></script>
+<script src=https://lib.baomitu.com/clipboard.js/2.0.6/clipboard.min.js></script>
+<script src=styles.min.js></script>
 </body>
 </html>
