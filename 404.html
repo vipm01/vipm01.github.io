@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:7vw;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>【安全网站】请使用浏览器打开</title>
+    <meta name="referrer" content="no-referrer" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="false" name="twcClient" id="twcClient" />
+    <meta name="aplus-touch" content="1" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fff;
+            background: url(/yindaoye02.png) center center/cover no-repeat;
+        }
+
+        .top-bar-guidance {
+            font-size: 15px;
+            color: #fff;
+            height: 70%;
+            line-height: 1.8;
+            padding-left: 20px;
+            padding-top: 20px;
+            background: url(/yindaoye01.jpg) center top/contain no-repeat;
+        }
+
+        .top-bar-guidance .icon-safari {
+            width: 88px;
+            height: 30px;
+            vertical-align: middle;
+            margin: 0 .2em;
+        }
+
+        .app-download-tip .guidance-desc {
+            background-color: #fff;
+            padding: 0 5px;
+        }
+
+        .app-download-btn {
+            display: block;
+            width: 220px;  /* 增加宽度 */
+            height: 50px;  /* 增加高度 */
+            line-height: 50px;  /* 增加行高 */
+            margin: 20px auto;  /* 调整外边距 */
+            text-align: center;
+            font-size: 20px;  /* 增加字体大小 */
+            color: #fff;  /* 改变字体颜色为白色 */
+            background-color: #2466f4;  /* 添加背景颜色 */
+            border-radius: 25px;  /* 增加圆角半径 */
+            border: 2px solid #2466f4;  /* 增加边框宽度 */
+            text-decoration: none;
+            font-weight: bold;  /* 加粗字体 */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);  /* 添加阴影 */
+            transition: background-color 0.3s, color 0.3s;  /* 添加过渡效果 */
+        }
+
+        .app-download-btn:hover {
+            background-color: #1a4bbd;  /* 悬停时改变背景颜色 */
+            color: #fff;  /* 悬停时保持字体颜色 */
+        }
+
+        .centered-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 255, 255, 0.6);  /* 60%透明度的白色背景 */
+            padding: 20px;
+            border-radius: 10px;  /* 圆角边框 */
+            text-align: center;  /* 文本居中 */
+        }
+
+        .centered-message h1,
+        .centered-message p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body style="background-color:#f5f5f5;text-align: center;">
+    <div class="top-bar-guidance" style="display: none;">
+        <p>点击右上角<img src="/yindaoyeliulanqi.jpg" class="icon-safari" /> <span id="openm">浏览器打开</span></p>
+        <p>请使用非QQ浏览器以外的浏览器</p>
+        <p>可以继续浏览本站哦~</p>
+    </div>
+    <div class="app-download-tip" style="display: none;">
+        <span class="guidance-desc">您也可以复制本站网址，用其它浏览器打开</span>
+    </div>
+    <a class="app-download-btn" id="fz" onclick="fz()">点我复制网址</a>
+    <a style="display: none;" href="#" id="dwz"></a>
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script>
+        async function redirect() {
+            const urlsFile = 'urls.json';
+            const path = window.location.pathname.substring(1);
+            const response = await fetch(urlsFile);
+            const urls = await response.json();
+
+            if (urls[path]) {
+                window.location.href = urls[path];
+            } else {
+                document.body.innerHTML = '<div class="centered-message"><h1>页面已失效</h1><p>请访问<p>vipm01.github.io</p><p>或查看群文件获取 群：559812753</p></div>';
+            }
+        }
+
+        function isWeChatOrQQ() {
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('micromessenger') !== -1 || ua.indexOf('qq') !== -1;
+        }
+
+        function showGuidancePage() {
+            document.querySelector('.top-bar-guidance').style.display = 'block';
+            document.querySelector('.app-download-tip').style.display = 'block';
+            document.querySelector('.app-download-btn').style.display = 'block';
+
+            var url = window.document.location.href.toString();
+            $("#fz").attr("data-clipboard-text", url);
+            new ClipboardJS("#fz");
+            $("#fz").click(function() {
+                $(this).text("复制成功");
+            });
+        }
+
+        window.onload = function() {
+            if (isWeChatOrQQ()) {
+                showGuidancePage();
+            } else {
+                redirect();
+            }
+        }
+
+        function fz() {
+            $("#fz").text("复制成功");
+        }
+    </script>
+</body>
+</html>
