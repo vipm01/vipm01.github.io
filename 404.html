@@ -5,71 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安全访问中</title>
 
-    <script>
-        async function redirect() {
-            const urlsFile = 'urls.json';
-            const path = window.location.pathname.substring(1);
-            const response = await fetch(urlsFile);
-            const urls = await response.json();
-
-            if (urls[path]) {
-                window.location.href = urls[path];
-            } else {
-                document.body.innerHTML = '<h1>页面已失效</h1><p>请咨询群管理，或查看群文件获取 559812753</p>';
-            }
-        }
-
-        function isWeChatOrQQ() {
-            var ua = navigator.userAgent.toLowerCase();
-            return ua.indexOf('micromessenger') !== -1 || ua.indexOf('qq') !== -1;
-        }
-
-        function showGuidancePage() {
-            document.body.innerHTML = `
-                <div class="top-bar-guidance">
-                    <p>点击右上角<img src="https://images.cubox.pro/wraed6/file/2023082315084263467/3.jpg" class="icon-safari" /> <span id="openm">Safari打开</span></p>
-                    <p>可以继续浏览本站哦~</p>
-                </div>
-                <div class="app-download-tip">
-                    <span class="guidance-desc">您也可以复制本站网址，到其它浏览器打开</span>
-                </div>
-                <a class="app-download-btn" id="fz" onclick="fz()">点我复制网址</a>
-                <a style="display: none;" href="#" id="dwz"></a>
-                <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-                <script src="https://lib.baomitu.com/clipboard.js/2.0.6/clipboard.min.js"></script>
-                <script>
-                    var url = window.document.location.href.toString();
-                    $(function() {
-                        $("#fz").attr("data-clipboard-text", url);
-                    });
-                    new ClipboardJS("#fz");
-                    function fz() {
-                        $("#fz").text("复制成功");
-                    }
-                    // 自动化调用浏览器
-                    var urlToOpen = window.location.href;
-                    function openu(u) {
-                        document.getElementById("dwz").href = u;
-                        document.getElementById("dwz").click();
-                    }
-                    openu("ucbrowser://" + urlToOpen);
-                    openu("mttbrowser://url=" + urlToOpen);
-                    openu("baiduboxapp://browse?url=" + urlToOpen);
-                    openu("googlechrome://" + urlToOpen);
-                    openu("mibrowser:" + urlToOpen);
-                </script>
-            `;
-        }
-
-        window.onload = async function() {
-            if (isWeChatOrQQ()) {
-                showGuidancePage();
-            } else {
-                await redirect();
-            }
-        }
-    </script>
-
     <style>
         body, html {
             width: 100%;
@@ -122,5 +57,70 @@
     </style>
 </head>
 <body>
+    <div class="content"></div>
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script>
+        async function redirect() {
+            const urlsFile = 'urls.json';
+            const path = window.location.pathname.substring(1);
+            const response = await fetch(urlsFile);
+            const urls = await response.json();
+
+            if (urls[path]) {
+                window.location.href = urls[path];
+            } else {
+                document.body.innerHTML = '<h1>页面已失效</h1><p>请咨询群管理，或查看群文件获取 559812753</p>';
+            }
+        }
+
+        function isWeChatOrQQ() {
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('micromessenger') !== -1 || ua.indexOf('qq') !== -1;
+        }
+
+        function showGuidancePage() {
+            document.querySelector('.content').innerHTML = `
+                <div class="top-bar-guidance">
+                    <p>点击右上角<img src="https://images.cubox.pro/wraed6/file/2023082315084263467/3.jpg" class="icon-safari" /> <span id="openm">Safari打开</span></p>
+                    <p>可以继续浏览本站哦~</p>
+                </div>
+                <div class="app-download-tip">
+                    <span class="guidance-desc">您也可以复制本站网址，到其它浏览器打开</span>
+                </div>
+                <a class="app-download-btn" id="fz" onclick="fz()">点我复制网址</a>
+                <a style="display: none;" href="#" id="dwz"></a>
+            `;
+            
+            var url = window.document.location.href.toString();
+            $(function() {
+                $("#fz").attr("data-clipboard-text", url);
+            });
+            new ClipboardJS("#fz");
+            function fz() {
+                $("#fz").text("复制成功");
+            }
+            
+            var urlToOpen = window.location.href;
+            function openu(u) {
+                document.getElementById("dwz").href = u;
+                document.getElementById("dwz").click();
+            }
+            openu("ucbrowser://" + urlToOpen);
+            openu("mttbrowser://url=" + urlToOpen);
+            openu("baiduboxapp://browse?url=" + urlToOpen);
+            openu("googlechrome://" + urlToOpen);
+            openu("mibrowser:" + urlToOpen);
+        }
+
+        window.onload = async function() {
+            if (isWeChatOrQQ()) {
+                showGuidancePage();
+            } else {
+                await redirect();
+            }
+        }
+    </script>
 </body>
 </html>
