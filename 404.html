@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en" style="font-size:7vw;">
 <head>
     <meta charset="UTF-8">
@@ -46,11 +46,18 @@
         }
 
         .app-download-tip {
-            margin: 0 auto;
+            margin: 20px auto;  /* 增加顶部和底部的外边距 */
             width: 295px;
             text-align: center;
-            font-size: 16px;
-            color: #2466f4;
+            font-size: 16px;  /* 增加字体大小 */
+            color: #fff;  /* 改变字体颜色为白色 */
+            background-color: #2466f4;  /* 添加背景颜色 */
+            padding: 15px;  /* 增加内边距 */
+            border-radius: 10px;  /* 添加圆角 */
+            border: 2px solid #1a4bbd;  /* 增加边框 */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);  /* 添加阴影 */
+            font-weight: bold;  /* 加粗字体 */
+            transition: background-color 0.3s, color 0.3s;  /* 添加过渡效果 */
         }
 
         .app-download-tip .guidance-desc {
@@ -58,23 +65,23 @@
             padding: 0 5px;
         }
 
-.app-download-btn {
-    display: block;
-    width: 220px;  /* 增加宽度 */
-    height: 50px;  /* 增加高度 */
-    line-height: 50px;  /* 增加行高 */
-    margin: 20px auto;  /* 调整外边距 */
-    text-align: center;
-    font-size: 20px;  /* 增加字体大小 */
-    color: #fff;  /* 改变字体颜色为白色 */
-    background-color: #2466f4;  /* 添加背景颜色 */
-    border-radius: 25px;  /* 增加圆角半径 */
-    border: 2px solid #2466f4;  /* 增加边框宽度 */
-    text-decoration: none;
-    font-weight: bold;  /* 加粗字体 */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);  /* 添加阴影 */
-    transition: background-color 0.3s, color 0.3s;  /* 添加过渡效果 */
-}
+        .app-download-btn {
+            display: block;
+            width: 220px;  /* 增加宽度 */
+            height: 50px;  /* 增加高度 */
+            line-height: 50px;  /* 增加行高 */
+            margin: 20px auto;  /* 调整外边距 */
+            text-align: center;
+            font-size: 20px;  /* 增加字体大小 */
+            color: #fff;  /* 改变字体颜色为白色 */
+            background-color: #2466f4;  /* 添加背景颜色 */
+            border-radius: 25px;  /* 增加圆角半径 */
+            border: 2px solid #2466f4;  /* 增加边框宽度 */
+            text-decoration: none;
+            font-weight: bold;  /* 加粗字体 */
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);  /* 添加阴影 */
+            transition: background-color 0.3s, color 0.3s;  /* 添加过渡效果 */
+        }
     </style>
 </head>
 
@@ -85,7 +92,7 @@
         <p>可继续浏览本站~</p>
     </div>
     <div class="app-download-tip" style="display: none;">
-        <span class="guidance-desc">您也可以复制本站网址，用其它浏览器打开</span>
+        <span class="guidance-desc">点击复制本站网址，用其它浏览器打开</span>
     </div>
     <a class="app-download-btn" id="fz" onclick="fz()">点我复制网址</a>
     <a style="display: none;" href="#" id="dwz"></a>
