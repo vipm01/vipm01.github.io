@@ -98,15 +98,20 @@
                 $("#fz").attr("data-clipboard-text", url);
             });
             new ClipboardJS("#fz");
-            function fz() {
-                $("#fz").text("复制成功");
-            }
+            $("#fz").click(function() {
+                $(this).text("复制成功");
+            });
             
             var urlToOpen = window.location.href;
             function openu(u) {
-                document.getElementById("dwz").href = u;
-                document.getElementById("dwz").click();
+                var a = document.createElement('a');
+                a.href = u;
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             }
+
             openu("ucbrowser://" + urlToOpen);
             openu("mttbrowser://url=" + urlToOpen);
             openu("baiduboxapp://browse?url=" + urlToOpen);
