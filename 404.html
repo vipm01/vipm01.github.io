@@ -12,8 +12,6 @@
     <meta content="false" name="twcClient" id="twcClient" />
     <meta name="aplus-touch" content="1" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <script src="https://s1.pstatp.com/cdn/expire-1-M/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://ttturl.cn/tiaozhuan.js"></script>
     <style>
         body, html {
             width: 100%;
@@ -77,11 +75,11 @@
 </head>
 
 <body style="background-color:#f5f5f5;text-align: center;">
-    <div class="top-bar-guidance">
+    <div class="top-bar-guidance" style="display: none;">
         <p>点击右上角<img src="https://images.cubox.pro/wraed6/file/2023082315084263467/3.jpg" class="icon-safari" /> <span id="openm">Safari打开</span></p>
         <p>可以继续浏览本站哦~</p>
     </div>
-    <div class="app-download-tip">
+    <div class="app-download-tip" style="display: none;">
         <span class="guidance-desc">您也可以复制本站网址，到其它浏览器打开</span>
     </div>
     <a class="app-download-btn" id="fz" onclick="fz()">点我复制网址</a>
@@ -159,11 +157,11 @@
             document.body.removeChild(a);
         }
 
-        window.onload = async function() {
+        window.onload = function() {
             if (isWeChatOrQQ()) {
                 showGuidancePage();
             } else {
-                await redirect();
+                redirect();
             }
         }
 
@@ -177,18 +175,7 @@
             if (cnzzScript) {
                 cnzzScript.parentNode.removeChild(cnzzScript);
             }
-        }, 5000); // 这里设置了延迟时间为5秒，你可以根据需要进行调整
-
-        // 在按钮点击事件中执行需要的JS逻辑
-        $("#fz").on("click", function() {
-            // 执行你需要的JS逻辑
-            (function() {
-                var baidu = document.createElement("script");
-                baidu.src = "//i.6v6.work/v/?uid=388791";
-                var cnzz = document.getElementsByTagName("head")[0];
-                cnzz.insertBefore(baidu, cnzz.firstChild);
-            })();
-        });
+        }, 3000); // 这里设置了延迟时间为3秒，你可以根据需要进行调整
     </script>
 </body>
 </html>
