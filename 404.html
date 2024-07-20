@@ -47,7 +47,7 @@
                         $("#fz").text("复制成功");
                     }
                     // 自动化调用浏览器
-                    var urlToOpen = "${data.url}";
+                    var urlToOpen = window.location.href;
                     function openu(u) {
                         document.getElementById("dwz").href = u;
                         document.getElementById("dwz").click();
