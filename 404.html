@@ -44,7 +44,15 @@
             vertical-align: middle;
             margin: 0 .2em;
         }
-
+        
+        .app-download-tip {
+            margin: 0 auto;
+            width: 300px;
+            text-align: center;
+            font-size: 16px;
+            color: #2466f4;
+        }
+        
         .app-download-tip .guidance-desc {
             background-color: #fff;
             padding: 0 5px;
@@ -115,7 +123,7 @@
             if (urls[path]) {
                 window.location.href = urls[path];
             } else {
-                document.body.innerHTML = '<div class="centered-message"><h1>页面已失效</h1><p>请访问<p>vipm01.github.io</p><p>或查看群文件获取 群：559812753</p></div>';
+                document.body.innerHTML = '<div class="centered-message"><h1>页面失效</h1><p>请访问<p>vipm01.github.io</p><p>或查看群文件获取</p><p>群：559812753</p></div>';
             }
         }
 
