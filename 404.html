@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:7vw;">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>【安全网站】请使用浏览器打开</title>
+    <meta name="referrer" content="no-referrer" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta content="false" name="twcClient" id="twcClient" />
+    <meta name="aplus-touch" content="1" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <style>
+        body, html {
+            width: 100%;
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #fff;
+        }
+
+        .top-bar-guidance {
+            font-size: 15px;
+            color: #fff;
+            height: 70%;
+            line-height: 1.8;
+            padding-left: 20px;
+            padding-top: 20px;
+            background: url(/yindaoye01.jpg) center top/contain no-repeat;
+        }
+
+        .top-bar-guidance .icon-safari {
+            width: 25px;
+            height: 25px;
+            vertical-align: middle;
+            margin: 0 .2em;
+        }
+
+        .app-download-tip {
+            margin: 0 auto;
+            width: 290px;
+            text-align: center;
+            font-size: 15px;
+            color: #2466f4;
+            background: url(/yindaoye02.png) left center/auto 15px repeat-x;
+        }
+
+        .app-download-tip .guidance-desc {
+            background-color: #fff;
+            padding: 0 5px;
+        }
+
+        .app-download-btn {
+            display: block;
+            width: 214px;
+            height: 40px;
+            line-height: 40px;
+            margin: 18px auto 0 auto;
+            text-align: center;
+            font-size: 18px;
+            color: #2466f4;
+            border-radius: 20px;
+            border: .5px #2466f4 solid;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body style="background-color:#f5f5f5;text-align: center;">
+    <div class="top-bar-guidance" style="display: none;">
+        <p>点击右上角<img src="/yindaoyeliulanqi.jpg" class="icon-safari" /> <span id="openm">浏览器打开</span></p>
+        <p>请使用非QQ浏览器以外的浏览器</p>
+        <p>可以继续浏览本站哦~</p>
+    </div>
+    <div class="app-download-tip" style="display: none;">
+        <span class="guidance-desc">您也可以复制本站网址，用其它浏览器打开</span>
+    </div>
+    <a class="app-download-btn" id="fz" onclick="fz()">点我复制网址</a>
+    <a style="display: none;" href="#" id="dwz"></a>
+
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script>
+        async function redirect() {
+            const urlsFile = 'urls.json';
+            const path = window.location.pathname.substring(1);
+            const response = await fetch(urlsFile);
+            const urls = await response.json();
+
+            if (urls[path]) {
+                window.location.href = urls[path];
+            } else {
+                document.body.innerHTML = '<h1>页面已失效</h1><p>请咨询群管理，或查看群文件获取 群：559812753</p>';
+            }
+        }
+
+        function isWeChatOrQQ() {
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.indexOf('micromessenger') !== -1 || ua.indexOf('qq') !== -1;
+        }
+
+        function showGuidancePage() {
+            document.querySelector('.top-bar-guidance').style.display = 'block';
+            document.querySelector('.app-download-tip').style.display = 'block';
+            document.querySelector('.app-download-btn').style.display = 'block';
+
+            var url = window.document.location.href.toString();
+            $("#fz").attr("data-clipboard-text", url);
+            new ClipboardJS("#fz");
+            $("#fz").click(function() {
+                $(this).text("复制成功");
+            });
+        }
+
+        window.onload = function() {
+            if (isWeChatOrQQ()) {
+                showGuidancePage();
+            } else {
+                redirect();
+            }
+        }
+
+        function fz() {
+            $("#fz").text("复制成功");
+        }
+    </script>
+</body>
+</html>
