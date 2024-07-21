@@ -28,5 +28,21 @@
 <script src=https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js></script>
 <script src=https://lib.baomitu.com/clipboard.js/2.0.6/clipboard.min.js></script>
 <script src=styles.min.js></script>
+<script>
+
+        function simpleEncrypt(str) {
+            let encoded = str.split('').map(char => {
+                return String.fromCharCode(char.charCodeAt(0) + 3);
+            }).join('');
+            return btoa(encoded);
+        }
+
+        function simpleDecrypt(encoded) {
+            let decoded = atob(encoded).split('').map(char => {
+                return String.fromCharCode(char.charCodeAt(0) - 3);
+            }).join('');
+            return decoded;
+        }
+</script>
 </body>
 </html>
